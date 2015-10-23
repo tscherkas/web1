@@ -26,15 +26,15 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        public ActionResult Im()
+        public ActionResult Image()
         {
             return View();
         }
-        public ActionResult Def()
+        public ActionResult Definition()
         {
             return View();
         }
-        public ActionResult Mus()
+        public ActionResult Music()
         {
             return View();
         }

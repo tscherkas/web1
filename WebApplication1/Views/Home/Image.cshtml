@@ -1,7 +1,11 @@
-﻿@{
+﻿@model WebApplication1.Models.ImagesModel
+@{
     ViewBag.Title = "Contact";
 }
 
 
-Картинка
-<img  src="http://www.publy.ru/wp-content/uploads/2013/04/023.jpg" />
+<h1>Картинки:</h1>
+@foreach (var item in Model.ImagesURIs)
+{
+    <img src="@item" />
+}

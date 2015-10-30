@@ -1,11 +1,16 @@
-﻿@{
+﻿@model WebApplication1.Models.MusicModel
+@{
     ViewBag.Title = "Contact";
+   
 }
 
-
+<h1> Музыка </h1>
+<p> @Model.creationDate.ToShortDateString()</p>
+<p> Срок: @Model.timeLost.Year лет @Model.timeLost.Month месяцев @Model.timeLost.Day дней.</p>
 <audio controls>
     <source src="audio/music.ogg" type="audio/ogg; codecs=vorbis">
     <source src="~/Content/music/muz.mp3" type="audio/mpeg">
     Тег audio не поддерживается вашим браузером.
     <a href="~/Content/music/muz.mp3">Скачайте музыку</a>.
 </audio>
+

@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     padding-bottom: 20px;
 }
 
@@ -34,13 +34,14 @@ textarea {
 {
 	padding: 10px;
 	float: left;
-	border-left: solid;
+	/*border-left: solid;
 	border-bottom: solid;
 	border-left: solid;
-	border-right: solid;
+	border-right: solid;*/
+    border: solid;
 	width: 30%;
 	box-sizing: border-box;
-	height: 600px;
+	/*height: 600px;*/
 	
 }
 
@@ -52,13 +53,15 @@ textarea {
 	width: 70%;
 	float: left;
 	box-sizing: border-box;
-	height: 600px;
+	/*height: 600px;*/
 	text-align: center;
+    border: solid;
 }
 .footer
 {
 	border: solid;
 	text-align: center;
+    border: solid;
 }
 .im {
 	border: solid;
@@ -67,4 +70,7 @@ textarea {
 }
 .block div {
 	vertical-align: middle;
+}
+.clearfix{
+    clear:both;
 }

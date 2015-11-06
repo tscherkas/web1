@@ -1,0 +1,18 @@
+﻿@model WebApplication1.Models.CommentModel
+@{
+    ViewBag.Title = "Form";
+}
+
+<h2>Form</h2>
+<div>
+    @using (Html.BeginForm("AddComment","Home"))
+    {
+        <div>
+            <p>@Html.TextBoxFor(x => x.Author)</p>
+            <p> @Html.ValidationMessageFor(x => x.Author)</p>
+            <p>@Html.TextAreaFor(x => x.Text)</p>
+            <p> @Html.ValidationMessageFor(x => x.Text)</p>
+            <input type="submit" />
+        </div>
+    }
+</div>

@@ -40,9 +40,37 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-        public ActionResult Form()
+        public ActionResult Comments()
         {
-            return View();
+            var model = Session["comments"] as List<CommentModel>;
+            if (model == null)
+            {
+                model = new List<CommentModel>();
+            }
+            return View(model);
+        }
+        public ActionResult CommentForm()
+        {
+            CommentModel model = new CommentModel();
+            model.Author = "dslhl";
+            return View(model);
+        }
+        public ActionResult AddComment(CommentModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var comments = Session["comments"] as List<CommentModel>;
+                if (comments == null)
+                {
+                    comments = new List<CommentModel>();
+                }
+                comments.Add(model);
+                Session["comments"] = comments;
+
+                return RedirectToAction("Comments");
+            }
+            else
+                return View("CommentForm", model);
         }
         public ActionResult Music()
         {

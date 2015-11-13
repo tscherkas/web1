@@ -38,7 +38,23 @@ namespace WebApplication1.Controllers
         }
         public ActionResult Definition()
         {
+
             return View();
+        }
+        public ActionResult AddUser(User user)
+        {
+            /*var userName = Session["userName"] as string;
+
+            userName = user.UserName;
+
+            Session["userName"] = userName;*/
+            HttpCookie userNameCookie = new HttpCookie(WebApplication1.Models.User.CoockieName);
+            userNameCookie.Value = user.UserName;
+            userNameCookie.Expires = DateTime.Now.AddHours(1);
+
+            Response.Cookies.Add(userNameCookie);
+            Request.Cookies[WebApplication1.Models.User.CoockieName].Value = userNameCookie.Value;
+            return View("Definition", user);
         }
         public ActionResult Comments()
         {

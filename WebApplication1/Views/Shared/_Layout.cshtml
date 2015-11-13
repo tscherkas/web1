@@ -13,7 +13,23 @@
 </head>
 <body>
     <div class="header">
-        Звук
+        <h1>Звук</h1>
+        <div class="greeting"> 
+        
+        @{ 
+            HttpCookie cookie = Request.Cookies[WebApplication1.Models.User.CoockieName];
+            var text = string.Empty;
+            if (cookie != null)
+            {
+                text = "Привет, " + cookie.Value;
+            }
+            else
+            {
+                text = "Привет, гость";
+            }
+        }
+            @text
+        </div>
     </div>
     <div>
         <div class="menu">

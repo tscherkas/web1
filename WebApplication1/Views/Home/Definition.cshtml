@@ -1,9 +1,23 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
+@model WebApplication1.Models.User
 
-
+<!--
 <dl>
     <dt>ЗВУК</dt>
     <dd>физическое явление, представляющее собой распространение в виде упругих волн механических колебаний в твёрдой, жидкой или газообразной среде.</dd>
 </dl>
+-->
+<h2>Form</h2>
+<div>
+    @using (Html.BeginForm("AddUser", "Home"))
+    {
+        <div>
+            <p>@Html.TextBoxFor(x => x.UserName)</p>
+            <p> @Html.ValidationMessageFor(x => x.UserName)</p>
+            
+            <input type="submit" value="Представиться"/>
+        </div>
+    }
+</div>

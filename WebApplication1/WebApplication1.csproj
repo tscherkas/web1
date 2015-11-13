@@ -179,6 +179,7 @@
     <Compile Include="Models\ImagesModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MusicModel.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

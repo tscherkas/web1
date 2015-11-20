@@ -15,6 +15,12 @@ namespace WebApplication1
 
 
             routes.MapRoute(
+                name: "films",
+                url: "KINO/{controller}/{action}",
+                defaults: new { controller = "Films", action = "Index" }
+                );
+
+            routes.MapRoute(
                 name: "a",
                 url: "{action}",
                 defaults: new { controller = "Home", action = "Definition" }

@@ -29,6 +29,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.date)
         </td>
+        @if (item.genres != null)
+        {
+            foreach (var genre in item.genres)
+            {
+                    <td>
+                        @Html.DisplayFor(modelItem => genre.ID.ToString())
+                    </td>
+            }
+        }
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |

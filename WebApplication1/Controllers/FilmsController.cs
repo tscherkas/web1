@@ -10,6 +10,11 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    public class EditFilmModel
+    {
+        public Film film { get; set; }
+        public IEnumerable<WebApplication1.Models.Genre> available_genres { get; set; }
+    }
     public class FilmsController : Controller
     {
         private FilmsContext db = new FilmsContext();
@@ -17,9 +22,13 @@ namespace WebApplication1.Controllers
         // GET: Films
         public ActionResult Index()
         {
+            var i = db.films.ToList();
             return View(db.films.ToList());
         }
-
+        public ActionResult Recommend()
+        {
+            return View();
+        }
         // GET: Films/Details/5
         public ActionResult Details(int? id)
         {
@@ -70,7 +79,11 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            return View(film);
+            EditFilmModel model = new EditFilmModel() ;
+            model.film = film;
+            model.available_genres = db.genres.ToList();
+
+            return View(model);
         }
 
         // POST: Films/Edit/5
@@ -82,6 +95,8 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                film.genres.Add(new Genre { ID = int.Parse(Request.Params["genre"]) });
                 db.Entry(film).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -114,7 +129,6 @@ namespace WebApplication1.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

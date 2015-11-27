@@ -1,0 +1,22 @@
+﻿@model IEnumerable<WebApplication1.Models.Genre>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Подбор</h2>
+
+@{
+    var sli = Model.Select(x => new SelectListItem
+    {
+        Text = x.name,
+        Value = x.ID.ToString()
+    });
+}
+@using (Html.BeginForm("Recommend", "FilmsRecommendations"))
+{
+    <div>
+        @Html.DropDownList("genre", sli)
+        <input type="submit" value="Подобрать" />
+    </div>
+}

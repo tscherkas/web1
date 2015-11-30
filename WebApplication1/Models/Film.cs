@@ -29,22 +29,22 @@ namespace WebApplication1.Models
     }
     public class FilmsContext : DbContext
     {
-        public FilmsContext() : base()
+        public FilmsContext() : base("Data Source=DOM;Initial Catalog=movies_test;Integrated Security=True")
         {
         }
         public DbSet<Film> films { get; set; }
         public DbSet<Genre> genres { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
+           // modelBuilder.Entity<Film>().ToTable("t_Department");
             modelBuilder.Entity<Film>()
                         .HasMany<Genre>(s => s.genres)
                         .WithMany(c => c.films)
                         .Map(cs =>
                         {//TODO rename
-                            cs.MapLeftKey("StudentRefId");
-                            cs.MapRightKey("CourseRefId");
-                            cs.ToTable("StudentCourse");
+                            cs.MapLeftKey("FilmRefId");
+                            cs.MapRightKey("GenreRefId");
+                            cs.ToTable("FilmGenre");
                         });
 
         }

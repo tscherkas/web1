@@ -93,11 +93,17 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,name,date")] Film film)
         {
+            int number = int.Parse(Request.Params["genre"]);
             if (ModelState.IsValid)
             {
-
-                film.genres.Add(new Genre { ID = int.Parse(Request.Params["genre"]) });
+                var genre = (from g in db.genres
+                                           where g.ID == number
+                             select g).FirstOrDefault<Genre>();
+                
+                genre.films.Add(film);
+                film.genres.Add(genre);
                 db.Entry(film).State = EntityState.Modified;
+                db.Entry(genre).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

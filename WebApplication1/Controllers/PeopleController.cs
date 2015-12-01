@@ -6,112 +6,111 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication1.Models;
 using WebApplication1.Models.Films;
 
 namespace WebApplication1.Controllers
 {
-    public class GenresController : Controller
+    public class PersonsController : Controller
     {
         private FilmsContext db = new FilmsContext();
 
-        // GET: Genres
+        // GET: People
         public ActionResult Index()
         {
-            return View(db.genres.ToList());
+            return View(db.persons.ToList());
         }
 
-        // GET: Genres/Details/5
+        // GET: People/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.genres.Find(id);
-            if (genre == null)
+            Person person = db.persons.Find(id);
+            if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(person);
         }
 
-        // GET: Genres/Create
+        // GET: People/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Genres/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: People/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,name")] Genre genre)
+        public ActionResult Create([Bind(Include = "ID,name,date")] Person person)
         {
             if (ModelState.IsValid)
             {
-                db.genres.Add(genre);
+                db.persons.Add(person);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(genre);
+            return View(person);
         }
 
-        // GET: Genres/Edit/5
+        // GET: People/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.genres.Find(id);
-            if (genre == null)
+            Person person = db.persons.Find(id);
+            if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(person);
         }
 
-        // POST: Genres/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: People/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,name")] Genre genre)
+        public ActionResult Edit([Bind(Include = "ID,name,date")] Person person)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(genre).State = EntityState.Modified;
+                db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(genre);
+            return View(person);
         }
 
-        // GET: Genres/Delete/5
+        // GET: People/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Genre genre = db.genres.Find(id);
-            if (genre == null)
+            Person person = db.persons.Find(id);
+            if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(genre);
+            return View(person);
         }
 
-        // POST: Genres/Delete/5
+        // POST: People/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Genre genre = db.genres.Find(id);
-            db.genres.Remove(genre);
+            Person person = db.persons.Find(id);
+            db.persons.Remove(person);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

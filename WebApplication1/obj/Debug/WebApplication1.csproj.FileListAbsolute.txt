@@ -271,6 +271,6 @@ D:\work\web1\WebApplication1\bin\Microsoft.Owin.Security.OAuth.xml
 D:\work\web1\WebApplication1\bin\Microsoft.Owin.Security.Google.xml
 D:\work\web1\WebApplication1\bin\Microsoft.Owin.Security.Twitter.xml
 D:\work\web1\WebApplication1\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\work\web1\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
 D:\work\web1\WebApplication1\obj\Debug\WebApplication1.dll
 D:\work\web1\WebApplication1\obj\Debug\WebApplication1.pdb
+D:\work\web1\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache

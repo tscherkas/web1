@@ -33,14 +33,12 @@
         </div>
         <div class="form-group">
             <div>
-                @{
-                    var sli = Model.available_genres.Select(x => new SelectListItem
-                    {
-                        Text = x.name,
-                        Value = x.ID.ToString()
-                    });
-                }
-                @Html.DropDownList("genre", sli)
+                @Html.DropDownList("genre", Model.available_genres)
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                @Html.DropDownList("person", Model.available_persons)
             </div>
         </div>
 

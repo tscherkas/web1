@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.Models.Genre>
+﻿@model IEnumerable<WebApplication1.Models.Films.Genre>
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("To Films", "Index", "Films")
+        @Html.ActionLink("To Films", "Index", "Films")
+        @Html.ActionLink("To Actors", "Index", "Persons")
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">

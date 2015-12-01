@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.Models.Films.Film>
+﻿@model IEnumerable<WebApplication1.Models.Films.Person>
 
 @{
     ViewBag.Title = "Index";
@@ -7,9 +7,10 @@
 <h2>Index</h2>
 
 <p>
-        @Html.ActionLink("To Genres", "Index", "Genres")
-        @Html.ActionLink("To Actors", "Index", "Persons")
-        @Html.ActionLink("Create New", "Create")
+
+    @Html.ActionLink("To Films", "Index", "Films")
+    @Html.ActionLink("To Genres", "Index", "Genres")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -19,8 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.date)
         </th>
-        <th> Genres</th>
-        <th> Actors and others</th>
         <th></th>
     </tr>
 
@@ -31,24 +30,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @if (item.genres != null)
-            {
-                foreach (var genre in item.genres)
-                {
-                    @genre.name <br />
-                }
-            }
-        </td>
-        <td>
-            @if (item.persons != null)
-            {
-                foreach (var p in item.persons)
-                {
-                    @p.name <br />
-                }
-            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

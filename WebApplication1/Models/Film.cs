@@ -42,7 +42,7 @@ namespace WebApplication1.Models.Films
     }
     public class FilmsContext : DbContext
     {
-        public FilmsContext() : base("Data Source=DOM;Initial Catalog=movies_test;Integrated Security=True")
+        public FilmsContext() : base()
         {
         }
         public DbSet<Film> films { get; set; }

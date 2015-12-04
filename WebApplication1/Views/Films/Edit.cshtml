@@ -3,7 +3,33 @@
 @{
     ViewBag.Title = "Edit";
 }
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#person").autocomplete({
+            source: function(request,response) {
+                $.ajax({
+                    url: "/KINO/Films/AutoCompleteActors",
+                    type: "POST",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
 
+                            return { label: item.name, value: item.name + "(" + item.ID + ")" };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+</script>
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
@@ -36,18 +62,22 @@
                 @Html.DropDownList("genre", Model.available_genres)
             </div>
         </div>
-        <div class="form-group">
-            <div>
-                @Html.DropDownList("person", Model.available_persons)
-            </div>
-        </div>
 
+
+   @*     <div class="form-group">
+        <div>
+            @Html.DropDownList("person", Model.available_persons)
+        </div>
+    </div>*@
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            Enter country name @Html.TextBox("person")
+        </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
             </div>
         </div>
-    </div>
 }
 
 <div>

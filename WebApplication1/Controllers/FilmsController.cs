@@ -99,19 +99,25 @@ namespace WebApplication1.Controllers
             {
 
                 int genreID = int.Parse(Request.Params["genre"]);
-                int personID = int.Parse(Request.Params["person"]);
+               
+            
+                
                 if (genreID != 0)
                 {
                     var genre = (from g in db.genres
                                  where g.ID == genreID
-                                 select g).FirstOrDefault<Genre>();
+                                 select g).FirstOrDefault();
                     genre.films.Add(film);
                     film.genres.Add(genre);
                     db.Entry(film).State = EntityState.Modified;
                     db.Entry(genre).State = EntityState.Modified;
                 }
-                if (personID != 0)
+
+                string personString = Request.Params["person"];
+                if (personString.Length > 2)
                 {
+                    var parsePersonId = personString.Split(new char[] { '(', ')' });
+                    int personID = int.Parse(parsePersonId[parsePersonId.Length - 2]);
                     var person = (from p in db.persons
                                   where p.ID == personID
                                   select p).FirstOrDefault<Person>();
@@ -177,6 +183,13 @@ namespace WebApplication1.Controllers
                 Text = x.name,
                 Value = x.ID.ToString()
             });
+        }
+        public JsonResult AutoCompleteActors(string term)
+        {
+            var result = (from r in db.persons
+                          where r.name.ToLower().Contains(term.ToLower())
+                          select new { r.name, r.ID }).Distinct();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
         protected void buildPersonsItemsList(EditFilmModel model)
         {
